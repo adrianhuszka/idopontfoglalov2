@@ -26,6 +26,12 @@ return new class extends Migration
 
             $table->uuid('teacher_id')->index();
             $table->foreign('teacher_id')->references('id')->on('teachers');
+
+            $table->uuid('classroom_id')->index();
+            $table->foreign('classroom_id')->references('id')->on('classrooms');
+
+            $table->uuid('course_id')->index();
+            $table->foreign('course_id')->references('id')->on('courses');
         });
     }
 

@@ -46,4 +46,19 @@ class Event extends Model
             'updated_at' => 'datetime',
         ];
     }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class, 'teacher_id', 'id');
+    }
+
+    public function classroom()
+    {
+        return $this->belongsTo(Classroom::class, 'classroom_id', 'id');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id', 'id');
+    }
 }

@@ -13,6 +13,13 @@ class EventController extends Controller
     {
         $events = Event::all();
 
+        foreach ($events as $event) {
+            $event->teacher;
+            $event->classroom;
+            $event->course;
+            $event->image = base64_encode($event->image);
+        }
+
         return Inertia::render('Events', [
             'events' => $events
         ]);
