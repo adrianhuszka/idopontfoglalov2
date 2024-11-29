@@ -43,7 +43,7 @@ COPY . /var/www
 RUN chown -R www-data:www-data /var/www
 
 # Change current user to www
-USER www-data
+# USER www-data
 
 # Expose port 80 for HTTP
 EXPOSE 80
