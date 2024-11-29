@@ -40,7 +40,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progre
 # Copy Nginx configuration
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
-# Copy the application code
+# Copy the application code (excluding 'vendor' directory)
 COPY . .
 
 # Set permissions for the working directory
