@@ -1,5 +1,5 @@
 # Use the official PHP image as a base image
-FROM php:8.3.14-fpm
+FROM php:8.2-fpm
 
 # Set working directory
 WORKDIR /var/www
@@ -33,17 +33,18 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Copy composer files and install dependencies
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+
 # Copy Nginx configuration
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
-# Copy the existing application directory contents to the working directory
-COPY . /var/www
+# Copy the application code
+COPY . .
 
-# Copy the existing application directory permissions to the working directory
+# Set permissions for the working directory
 RUN chown -R www-data:www-data /var/www
-
-# Change current user to www
-# USER www-data
 
 # Expose port 80 for HTTP
 EXPOSE 80
