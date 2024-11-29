@@ -4,8 +4,9 @@ FROM php:8.3.14-fpm
 # Set working directory
 WORKDIR /var/www
 
-# Install system dependencies
+# Install system dependencies and Nginx
 RUN apt-get update && apt-get install -y \
+    nginx \
     build-essential \
     libpng-dev \
     libjpeg-dev \
@@ -32,15 +33,20 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Copy Nginx configuration
+COPY ./nginx.conf /etc/nginx/nginx.conf
+
 # Copy the existing application directory contents to the working directory
 COPY . /var/www
 
 # Copy the existing application directory permissions to the working directory
-COPY --chown=www-data:www-data . /var/www
+RUN chown -R www-data:www-data /var/www
 
 # Change current user to www
 USER www-data
 
-# Expose port 9000 and start php-fpm server
-EXPOSE 9000
-CMD ["php-fpm"]
+# Expose port 80 for HTTP
+EXPOSE 80
+
+# Start PHP-FPM and Nginx
+CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]

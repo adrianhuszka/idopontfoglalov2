@@ -12,7 +12,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');
 
 Route::get('/events', [EventController::class, 'index'])->name('events');
 
