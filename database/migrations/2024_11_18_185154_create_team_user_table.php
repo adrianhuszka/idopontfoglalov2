@@ -13,9 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('team_user', function (Blueprint $table) {
-            $table->uuid('id')->primary()->default(DB::raw('(UUID())'));
+            $table->id('id')->primary()->autoIncrement();
             $table->foreignId('team_id');
-            $table->foreignId('user_id');
+            $table->uuid('user_id');
             $table->string('role')->nullable();
             $table->timestamps();
 

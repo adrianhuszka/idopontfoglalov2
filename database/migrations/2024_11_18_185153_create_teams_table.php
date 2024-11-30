@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('teams', function (Blueprint $table) {
-            $table->uuid('id')->primary()->default(DB::raw('(UUID())'));
+            $table->id('id')->primary()->autoIncrement();
             $table->uuid('user_id')->index();
             $table->string('name');
             $table->boolean('personal_team');
