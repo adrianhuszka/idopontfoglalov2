@@ -24,22 +24,31 @@ function formatDate(date) {
 <template>
     <Head title="Események" />
     <BaseLayout>
-        <div
-            v-for="event in events"
-            class="w-72 h-96 border-black border rounded-lg bg bg-white dark:bg-gray-800 shadow-md p-4 hover:scale-105 transition-transform"
-        >
-            <div class="card-header">
-                <img :src="'data:image/png;base64,' + event.image" />
-            </div>
-            <div class="card-body break-words text-ellipsis overflow-hidden">
-                <h1>
-                    {{ event.title }}
-                </h1>
-                <!-- {{ event.topic }} -->
-                <p>{{ formatDate(event.time) }}</p>
-                <p>{{ event.course.name }}</p>
-                <p>{{ event.classroom.name }}</p>
-                <p>{{ event.teacher.name }}</p>
+        <div class="flex gap-6 flex-wrap">
+            <div
+                v-for="event in events"
+                class="w-72 h-96 border-black border rounded-lg bg bg-white dark:bg-gray-800 shadow-md p-4 hover:scale-105 transition-transform cursor-pointer"
+            >
+                <Link :href="route('event.details', event.id)">
+                    <div class="card-header flex justify-center items-center">
+                        <img
+                            class="h-40"
+                            :src="'data:image/png;base64,' + event.image"
+                        />
+                    </div>
+                    <div
+                        class="card-body mt-6 break-words text-ellipsis overflow-hidden"
+                    >
+                        <h1 class="text-black dark:text-white text-xl h-16">
+                            {{ event.title }}
+                        </h1>
+                        <!-- {{ event.topic }} -->
+                        <p>{{ formatDate(event.time) }}</p>
+                        <p>{{ event.course.name }}</p>
+                        <p>Helyszín: {{ event.classroom.name }}</p>
+                        <p>{{ event.teacher.name }}</p>
+                    </div>
+                </Link>
             </div>
         </div>
     </BaseLayout>

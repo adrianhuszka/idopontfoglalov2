@@ -24,4 +24,17 @@ class EventController extends Controller
             'events' => $events
         ]);
     }
+
+    public function showEvent($id): Response
+    {
+        $event = Event::find($id);
+        $event->teacher;
+        $event->classroom;
+        $event->course;
+        $event->image = base64_encode($event->image);
+
+        return Inertia::render('EventDetails', [
+            'event' => $event
+        ]);
+    }
 }

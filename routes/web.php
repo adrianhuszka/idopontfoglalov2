@@ -16,6 +16,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/events', [EventController::class, 'index'])->name('events');
+Route::get('/events/{id}', [EventController::class, 'showEvent'])->name('event.details');
 
 Route::middleware([
     'auth:sanctum',
