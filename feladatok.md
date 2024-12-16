@@ -1,3 +1,3 @@
--   Események odal szűrők helyei, kereső mező
+-   Események oldal szűrők helyei, kereső mező
 -   Új esemény felvétele felület
 -   Esemény módosítás, törlés gombok
