@@ -24,6 +24,63 @@ function formatDate(date) {
 <template>
     <Head title="Események" />
     <BaseLayout>
+        <div
+            class="mb-16 flex justify-center items-center rounded-2xl text-white"
+        >
+            <input
+                type="text"
+                v-model="input"
+                placeholder="Kereső..."
+                class="flex rounded-2xl w-96 dark:bg-slate-500 text-teal-50 dark:placeholder-slate-50"
+            />
+        </div>
+        <div
+            class="flex rounded-2xl justify-evenly text-white dark:placeholder-slate-50 items-center flex-row w-full gap-10 mb-14"
+        >
+            <select
+                name=""
+                id="nap"
+                class="flex rounded-2xl w-96 dark:bg-slate-500 text-teal-50 dark:placeholder-slate-50 text-center focus:outline-none"
+                style="appearance: revert"
+            >
+                <option value="0">Válassz időpontot!</option>
+            </select>
+
+            <select
+                name=""
+                id="ora"
+                class="flex rounded-2xl w-96 dark:bg-slate-500 text-teal-50 dark:placeholder-slate-50 text-center"
+                style="appearance: revert"
+            >
+                <option value="0">Válassz időpontot!</option>
+            </select>
+
+            <select
+                name=""
+                id="szak"
+                class="flex rounded-2xl w-96 dark:bg-slate-500 text-teal-50 dark:placeholder-slate-50 text-center"
+                style="appearance: revert"
+            >
+                <option value="0">Válassz szakot!</option>
+                <option value="4">Automatikai technikus</option>
+                <option value="3">Erősáramú elektrotechnikus</option>
+                <option value="5">
+                    Informatikai rendszer- és alkalmazás-üzemeltető technikus
+                </option>
+                <option value="8">Közismeret</option>
+                <option value="6">Szoftverfejlesztő és -tesztelő</option>
+                <option value="7">Távközlési technikus</option>
+            </select>
+
+            <select
+                name=""
+                id="oktatok"
+                class="flex rounded-2xl w-96 dark:bg-slate-500 text-teal-50 dark:placeholder-slate-50 text-center appearance-none bg-white"
+                style="appearance: revert"
+            >
+                <option value="0">Válassz oktatót!</option>
+            </select>
+        </div>
         <div class="flex gap-6 flex-wrap">
             <div
                 v-for="event in events"
