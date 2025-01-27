@@ -73,6 +73,13 @@ const logout = () => {
                                 >
                                     Users
                                 </NavLink>
+
+                                <NavLink
+                                    :href="route('admin.events')"
+                                    :active="route().current('admin.events')"
+                                >
+                                    Events
+                               </NavLink>
                             </div>
                         </div>
 

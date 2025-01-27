@@ -45,4 +45,33 @@ class EventController extends Controller
             'event' => $event
         ]);
     }
+
+    public function adminEvent (): Response
+    {
+        $events = Event::all();
+
+        foreach ($events as $event) {
+            $event->teacher;
+            $event->classroom;
+            $event->course;
+            $event->image = base64_encode($event->image);
+        }
+
+        return Inertia::render('Admin/Events', [
+            'events' => $events
+        ]);
+    }
+
+    public function showAdminEvent($id): Response
+    {
+        $event = Event::find($id);
+        $event->teacher;
+        $event->classroom;
+        $event->course;
+        $event->image = base64_encode($event->image);
+
+        return Inertia::render('Admin/EventDetails', [
+            'event' => $event
+        ]);
+    }
 }
