@@ -1,12 +1,29 @@
 <script setup>
 import BaseLayout from "@/Layouts/BaseLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
+import { ref } from "vue";
 
-defineProps({
+const props = defineProps({
     events: {
         type: Array,
         required: true,
     },
+    courses: {
+        type: Array,
+        required: true,
+    },
+    teachers: {
+        type: Array,
+        required: true,
+    },
+});
+
+const dates = ref(new Set());
+
+props.events.forEach((event) => {
+    const date = event.time.split(" ")[0].replaceAll("-", ". ") + ".";
+    const time = event.time.split(" ")[1].slice("0, -3");
+    dates.value.add(event.time);
 });
 
 function formatDate(date) {
@@ -41,42 +58,45 @@ function formatDate(date) {
                 name=""
                 id="nap"
                 class="flex rounded-2xl w-96 dark:bg-slate-500 text-teal-50 dark:placeholder-slate-50 text-center focus:outline-none"
-                style="appearance: revert"
+                style="appearance: revert; background-image: none"
             >
                 <option value="0">Válassz időpontot!</option>
+                <option v-for="date in dates"></option>
             </select>
 
             <select
                 name=""
                 id="ora"
                 class="flex rounded-2xl w-96 dark:bg-slate-500 text-teal-50 dark:placeholder-slate-50 text-center"
-                style="appearance: revert"
+                style="appearance: revert; background-image: none"
             >
                 <option value="0">Válassz időpontot!</option>
+                <option v-for="date in dates" :value="date">{{ date }}</option>
             </select>
 
             <select
                 name=""
                 id="szak"
                 class="flex rounded-2xl w-96 dark:bg-slate-500 text-teal-50 dark:placeholder-slate-50 text-center"
-                style="appearance: revert"
+                style="appearance: revert; background-image: none"
             >
                 <option value="0">Válassz szakot!</option>
-                <option value="4">Automatikai technikus</option>
+                <!-- <option value="4">Automatikai technikus</option>
                 <option value="3">Erősáramú elektrotechnikus</option>
                 <option value="5">
                     Informatikai rendszer- és alkalmazás-üzemeltető technikus
                 </option>
                 <option value="8">Közismeret</option>
                 <option value="6">Szoftverfejlesztő és -tesztelő</option>
-                <option value="7">Távközlési technikus</option>
+                <option value="7">Távközlési technikus</option> -->
+                <option v-for="courses in courses" :value="courses.id"></option>
             </select>
 
             <select
                 name=""
                 id="oktatok"
                 class="flex rounded-2xl w-96 dark:bg-slate-500 text-teal-50 dark:placeholder-slate-50 text-center appearance-none bg-white"
-                style="appearance: revert"
+                style="appearance: revert; background-image: none"
             >
                 <option value="0">Válassz oktatót!</option>
             </select>
