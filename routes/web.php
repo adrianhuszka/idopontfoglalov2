@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('/events', [EventController::class, 'index'])->name('events');
 Route::get('/events/{id}', [EventController::class, 'showEvent'])->name('event.details');
+Route::post('/participants', [ParticipantsController::class, ''])->name('');
 
 Route::middleware([
     'auth:sanctum',
@@ -33,5 +34,3 @@ Route::middleware([
 
     Route::get('/admin/events/{id}', [EventController::class, 'showAdminEvent'])->name('admin.event.details');
 });
-
-

@@ -21,7 +21,12 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post();
+    form.transform((data) => ({
+        ...data,
+        remember: form.remember ? "on" : "",
+    })).post(route(""), {
+        onFinish: () => form.reset("password"),
+    });
 };
 
 function formatDate(date) {
