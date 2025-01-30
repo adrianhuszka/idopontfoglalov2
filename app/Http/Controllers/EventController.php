@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use App\Models\Event;
+use App\Models\Course;
+use App\Models\Teacher;
 use Inertia\Inertia;
 
 class EventController extends Controller
@@ -20,8 +22,14 @@ class EventController extends Controller
             $event->image = base64_encode($event->image);
         }
 
+        $courses = Course::all();
+        $teachers = Teacher::all();
+
+
         return Inertia::render('Events', [
-            'events' => $events
+            'events' => $events,
+            'courses' => $courses,
+            'teachers' => $teachers
         ]);
     }
 

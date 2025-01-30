@@ -27,5 +27,8 @@
         "test": "tests"
     },
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "boxicons": "^2.1.4"
+    }
 }
