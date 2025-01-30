@@ -5,6 +5,7 @@ import { ref } from "vue";
 import "boxicons";
 
 const props = defineProps({
+const props = defineProps({
     events: {
         type: Array,
         required: true,

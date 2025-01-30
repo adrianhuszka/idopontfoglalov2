@@ -28,4 +28,10 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/admin/users', [UserController::class, 'index'])->name('users');
+
+    Route::get('/admin/events', [EventController::class, 'adminEvent'])->name('admin.events');
+
+    Route::get('/admin/events/{id}', [EventController::class, 'showAdminEvent'])->name('admin.event.details');
 });
+
+
