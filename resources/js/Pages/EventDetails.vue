@@ -21,12 +21,11 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.transform((data) => ({
-        ...data,
-        remember: form.remember ? "on" : "",
-    })).post(route(""), {
-        onFinish: () => form.reset("password"),
-    });
+    if (form.email !== form.email2) {
+        alert("Az email címek nem egyeznek!");
+    } else {
+        form.post(route("participants.save", { nev: form.nev, email: form.email }));
+    }
 };
 
 function formatDate(date) {
