@@ -94,7 +94,7 @@ function formatDate(date) {
             <div class="flex gap-6 flex-wrap p-5">
                 <div
                     v-for="event in events"
-                    class="w-72 h-[25rem] border-black border rounded-lg bg bg-white dark:bg-gray-800 shadow-md p-4 hover:scale-105 transition-transform cursor-pointer"
+                    class="w-72 h-[25xrem] border-black border rounded-lg bg bg-white dark:bg-gray-800 shadow-md p-4 hover:scale-105 transition-transform cursor-pointer"
                 >
                     <Link :href="route('admin.event.details', event.id)">
                         <div

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ParticipantsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,7 +18,7 @@ Route::get('/', function () {
 
 Route::get('/events', [EventController::class, 'index'])->name('events');
 Route::get('/events/{id}', [EventController::class, 'showEvent'])->name('event.details');
-Route::post('/participants', [ParticipantsController::class, ''])->name('');
+Route::post('/participants', [ParticipantsController::class, 'save'])->name('participants.save');
 
 Route::middleware([
     'auth:sanctum',
