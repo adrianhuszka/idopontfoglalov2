@@ -53,22 +53,55 @@ function filterikoncsere() {
     document.getElementById("filtertext").setAttribute("display", "block");
 }
 </script>
-<style>
+<style scoped>
+.toltip {
+    position: absolute;
+    display: inline-block;
+}
+
+.toltip:hover .toltiptexzt {
+    visibility: visible;
+    z-index: 2;
+}
+.toltip .toltiptext {
+    visibility: hidden;
+    text-align: center;
+    border-radius: 6px;
+    width: 100px;
+    background-color: blue;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Position */
+
+    position: absolute;
+
+    z-index: 1;
+}
+
 button:hover {
-    display: block;
     background-color: aquamarine;
 }
 .hide {
     display: none;
 }
 
-.mydiv:hover + .hide:hover {
+/* .mydiv:hover + .hide:hover {
     background-color: #f1f1f1;
     border: 1px solid black;
-    display: absolute;
+    display: block;
     left: 50px;
     top: 50px;
     color: chocolate;
+} */
+
+.mydiv:hover::after {
+    content: "Filter";
+    display: block;
+
+    position: absolute;
+    transform: translate(0px, -40px);
+    color: white;
 }
 </style>
 <template>
@@ -91,9 +124,10 @@ button:hover {
                 @mouseleave="showDescription = false"
                 alt="Szűrő"
             >
-                <box-icon id="ikon" name="filter"></box-icon>
-                <p id="filtertext" class="hide">Filter</p>
+                <box-icon id="ikon" class="toltip" name="filter"></box-icon>
+                <span id="filtertext" class="hide toltiptext">Filter </span>
             </button>
+            <span id="filtertext" class="hide toltiptext">Filter </span>
             <div style="display: none" id="filtertext"></div>
         </div>
         <div
